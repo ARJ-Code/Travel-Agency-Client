@@ -9,13 +9,18 @@
 
 .auth-box {
   background-color: white;
-  width: 35%;
+  width: 50%;
   border: 2px solid blue;
   border-radius: 20px;
 }
 
-.auth-btn {
-  width: 30%;
-  border-radius: 12px;
+@media (max-width: 600px) {
+  .auth-box {
+    width: 90%;
+  }
 }
 
+.auth-btn {
+  width: 40%;
+  border-radius: 12px;
+}
