@@ -3,6 +3,7 @@ import { FC, useContext } from "react";
 import { UserContext } from "../context/UserProvider";
 import { Image } from "antd";
 import logo from "../assets/logo.jpg";
+import { useNavigate } from "react-router-dom";
 
 interface MyHeaderProps {
   showSidebar: boolean;
@@ -11,6 +12,7 @@ interface MyHeaderProps {
 
 const MyHeader: FC<MyHeaderProps> = ({ showSidebar, setShowSidebar }) => {
   const { user, logout } = useContext(UserContext);
+  const navigate = useNavigate();
 
   return (
     <div className="layout-header-content">
@@ -27,7 +29,10 @@ const MyHeader: FC<MyHeaderProps> = ({ showSidebar, setShowSidebar }) => {
       ) : (
         <div />
       )}
-      <div className="layout-header-effect mr-20" onClick={logout}>
+      <div
+        className="layout-header-effect mr-20"
+        onClick={user ? logout : () => navigate("/auth/login")}
+      >
         {user ? (
           <>
             logout <LogoutOutlined />

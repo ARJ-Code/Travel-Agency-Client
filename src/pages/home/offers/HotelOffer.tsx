@@ -233,7 +233,7 @@ const HotelOffer = () => {
                       : { fontSize: "18px" }
                   }
                   onClick={() => reactionFunc(value, ReactionState.Dislike)}
-                />{" "}
+                />
                 {
                   value.reactions?.filter(
                     (x) => x.reactionState === ReactionState.Dislike

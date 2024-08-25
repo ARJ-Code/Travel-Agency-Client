@@ -137,7 +137,6 @@ const Hotels = () => {
                 />
               </Tooltip>,
               <Tooltip title="Show Offers">
-                ,
                 <LocalOfferIcon
                   onClick={() => navigate(`/offer/hotel?hotel=${value.id}`)}
                   style={{ paddingTop: "3px" }}

@@ -1,7 +1,9 @@
 import { ReactNode } from "react";
-import { Avatar, Card, Image, List } from "antd";
+import { Avatar, Card, Divider, Flex, Image, List } from "antd";
 import logo from "../assets/logo.jpg";
 import { Image as ApiImage } from "../types/api";
+import { useMediaQuery } from "react-responsive";
+import Title from "antd/es/typography/Title";
 
 export interface ShowEntitiesProps<T> {
   data: T[];
@@ -24,8 +26,14 @@ function ShowEntities<T>({
   convert,
   loading,
 }: ShowEntitiesProps<T>) {
+  const isSmallScreen = useMediaQuery({ query: "(max-width: 600px)" });
+
   return (
-    <div style={{ margin: "40px" }}>
+    <div
+      style={{
+        margin: isSmallScreen ? -10 : 40,
+      }}
+    >
       <List
         loading={loading}
         itemLayout="vertical"
@@ -34,8 +42,110 @@ function ShowEntities<T>({
         renderItem={(item, idx) => {
           const entity = convert(item);
           return (
-            <Card hoverable key={idx} style={{ marginBottom: "50px" }}>
-              <List.Item
+            <Card
+              bodyStyle={{ padding: isSmallScreen ? 10 : undefined }}
+              hoverable
+              key={idx}
+              style={{
+                marginBottom: isSmallScreen ? 10 : 50,
+                padding: isSmallScreen ? 0 : undefined,
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  width: "100%",
+                }}
+              >
+                <div
+                  style={{
+                    flex: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      marginBottom: 10,
+                    }}
+                  >
+                    <div>
+                      {entity.avatar ? (
+                        entity.avatar
+                      ) : (
+                        <Avatar
+                          size={isSmallScreen ? 30 : 40}
+                          src={logo}
+                          style={{ borderRadius: isSmallScreen ? 5 : 10 }}
+                        />
+                      )}
+                    </div>
+                    <div>
+                      <Title
+                        style={{
+                          fontSize: 16,
+                          marginLeft: 10,
+                        }}
+                      >
+                        {entity.title}
+                      </Title>
+                    </div>
+                  </div>
+                  <div style={{ marginBottom: 5 }}>
+                    {content ? content(item) : undefined}
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    {actions
+                      ? actions(item).map((a) => (
+                          <>
+                            {a}
+                            <Divider
+                              type="vertical"
+                              style={{
+                                height: "80%",
+                                // marginTop: 5,
+                                // marginBottom: 5,
+                              }}
+                            />
+                          </>
+                        ))
+                      : undefined}
+                  </div>
+                </div>
+                <div style={{ width: isSmallScreen ? 80 : 100 }}>
+                  <Image
+                    preview={false}
+                    className="show-mini-image"
+                    alt={entity.image.name}
+                    src={entity.image.url}
+                    style={{
+                      width: isSmallScreen ? 80 : 100,
+                      height: isSmallScreen ? 80 : 100, // Asegura que la imagen tenga la misma altura que el ancho
+                      maxWidth: "100%", // Limita la imagen al 100% del contenedor
+                      maxHeight: "100%", // Limita la altura al 100% del contenedor
+                      objectFit: "cover", // La imagen cubre completamente el contenedor
+                      borderRadius: isSmallScreen ? 5 : 10,
+                    }}
+                  />
+
+                  {entity.footerImage && (
+                    <div
+                      className="center-content mt-5"
+                      style={{
+                        marginTop: isSmallScreen ? 5 : 10,
+                        width: isSmallScreen ? 80 : 100,
+                      }}
+                    >
+                      {entity.footerImage}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* <List.Item
                 actions={actions ? actions(item) : undefined}
                 extra={
                   <>
@@ -44,9 +154,24 @@ function ShowEntities<T>({
                       className="show-mini-image"
                       alt={entity.image.name}
                       src={entity.image.url}
+                      style={{
+                        width: isSmallScreen ? 80 : 100,
+                        height: isSmallScreen ? 80 : 100, // Asegura que la imagen tenga la misma altura que el ancho
+                        maxWidth: "100%", // Limita la imagen al 100% del contenedor
+                        maxHeight: "100%", // Limita la altura al 100% del contenedor
+                        objectFit: "cover", // La imagen cubre completamente el contenedor
+                        borderRadius: isSmallScreen ? 5 : 10,
+                      }}
                     />
+
                     {entity.footerImage && (
-                      <div className="center-content mt-5">
+                      <div
+                        className="center-content mt-5"
+                        style={{
+                          marginTop: isSmallScreen ? 5 : 10,
+                          width: isSmallScreen ? 80 : 100,
+                        }}
+                      >
                         {entity.footerImage}
                       </div>
                     )}
@@ -58,14 +183,24 @@ function ShowEntities<T>({
                     entity.avatar ? (
                       entity.avatar
                     ) : (
-                      <Avatar size={40} src={logo} />
+                      <Avatar
+                        size={isSmallScreen ? 30 : 40}
+                        src={logo}
+                        style={{ borderRadius: isSmallScreen ? 5 : 10 }}
+                      />
                     )
                   }
                   title={entity.title}
                   description={entity.description}
+                  style={{
+                    overflowWrap: "break-word",
+                    whiteSpace: isSmallScreen ? "normal" : "nowrap",
+                  }}
                 />
-                {content ? content(item) : undefined}
-              </List.Item>
+                <div style={{ width: "80%" }}>
+                  {content ? content(item) : undefined}
+                </div>
+              </List.Item> */}
             </Card>
           );
         }}
