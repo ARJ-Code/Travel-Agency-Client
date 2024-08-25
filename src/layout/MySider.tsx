@@ -207,7 +207,7 @@ const MySider: FC<MyHeaderProps> = ({ collapsed }) => {
 
   if (user?.role === Roles.Tourist) items.push(touristMenu());
   return (
-    <>
+    <div>
       <div
         className="center-content"
         style={collapsed ? { margin: "10px" } : { margin: "20px" }}
@@ -235,8 +235,9 @@ const MySider: FC<MyHeaderProps> = ({ collapsed }) => {
         defaultSelectedKeys={["1"]}
         mode="inline"
         items={items}
+        inlineCollapsed={collapsed}
       />
-    </>
+    </div>
   );
 };
 

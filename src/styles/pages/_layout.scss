@@ -111,3 +111,20 @@
 .content-layout {
   overflow: auto;
 }
+
+.ant-drawer .ant-drawer-body {
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.layout-drawer-close-btn {
+  height: 48px;
+  color: #fff;
+  line-height: 48px;
+  text-align: center;
+  background: #002140;
+  cursor: pointer;
+  transition: all 0.2s;
+}

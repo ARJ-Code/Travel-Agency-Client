@@ -1,7 +1,6 @@
 import { LoginOutlined, LogoutOutlined } from "@ant-design/icons";
 import { FC, useContext } from "react";
 import { UserContext } from "../context/UserProvider";
-import { useNavigate } from "react-router-dom";
 import { Image } from "antd";
 import logo from "../assets/logo.jpg";
 
@@ -12,7 +11,6 @@ interface MyHeaderProps {
 
 const MyHeader: FC<MyHeaderProps> = ({ showSidebar, setShowSidebar }) => {
   const { user, logout } = useContext(UserContext);
-  const navigate = useNavigate();
 
   return (
     <div className="layout-header-content">
