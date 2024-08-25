@@ -30,12 +30,14 @@ const MyLayout: React.FC = () => {
           width={80}
           drawerStyle={{ backgroundColor: "#001529" }}
         >
-          <MySider collapsed={true} />
-          <div
-            className="layout-drawer-close-btn"
-            onClick={() => setShowSidebar(false)}
-          >
-            <LeftOutlined />
+          <div className="layout-drawer">
+            <MySider collapsed={true} />
+            <div
+              className="layout-drawer-close-btn"
+              onClick={() => setShowSidebar(false)}
+            >
+              <LeftOutlined />
+            </div>
           </div>
         </Drawer>
       ) : (
