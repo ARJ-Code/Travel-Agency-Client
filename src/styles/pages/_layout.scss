@@ -23,8 +23,11 @@
 }
 
 .layout-header {
-  // width: 100%;
   background-color: gray;
+}
+
+.ant-layout-header {
+  padding: 0 !important;
 }
 
 .layout-header-left-buttons {
@@ -82,14 +85,6 @@
 .layout-screen-sidebar {
   background-color: rgb(4, 21, 77);
   color: white;
-
-  // font-size: large;
-  // display: flex;
-  // flex-direction: column;
-  // height: 100%;
-  // padding-left: 10px;
-  // padding-right: 10px;
-  // width: 275px;
 }
 
 .layout-logo {
