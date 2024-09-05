@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Carousel } from "antd";
 import { Image } from "../types/api";
 import { getRandomImage } from "../api/image";
+import { useMediaQuery } from "react-responsive";
 
 const contentStyle: React.CSSProperties = {
   padding: "25px",
@@ -48,16 +49,17 @@ const HomeView: React.FC = () => {
     load();
   }, []);
 
+  const isSmallScreen = useMediaQuery({ query: "(max-width: 600px)" });
+
   return (
     <div className="home-view">
-      <Carousel autoplay>
+      <Carousel autoplay style={{ height: isSmallScreen ? "70%" : "75%" }}>
         {images.map((i, idx) => (
-          <div key={idx}>
+          <div key={idx} style={{ height: isSmallScreen ? "70%" : "75%" }}>
             <img style={contentStyle} alt={i.name} src={i.url}></img>
           </div>
         ))}
       </Carousel>
-
       <h1 className="bottom_sign">Travel With Us!!!</h1>
     </div>
   );

@@ -59,7 +59,7 @@ function ShowEntities<T>({
               >
                 <div
                   style={{
-                    flex: 1,
+                    width: "80%",
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-between",
@@ -88,13 +88,14 @@ function ShowEntities<T>({
                         style={{
                           fontSize: 16,
                           marginLeft: 10,
+                          marginRight: 10,
                         }}
                       >
                         {entity.title}
                       </Title>
                     </div>
                   </div>
-                  <div style={{ marginBottom: 5 }}>
+                  <div style={{ marginBottom: 10 }}>
                     {content ? content(item) : undefined}
                   </div>
                   <div style={{ display: "flex", alignItems: "center" }}>
@@ -115,15 +116,13 @@ function ShowEntities<T>({
                       : undefined}
                   </div>
                 </div>
-                <div style={{ width: isSmallScreen ? 80 : 100 }}>
+                <div style={{ width: "20%" }}>
                   <Image
                     preview={false}
                     className="show-mini-image"
                     alt={entity.image.name}
                     src={entity.image.url}
                     style={{
-                      width: isSmallScreen ? 80 : 100,
-                      height: isSmallScreen ? 80 : 100, // Asegura que la imagen tenga la misma altura que el ancho
                       maxWidth: "100%", // Limita la imagen al 100% del contenedor
                       maxHeight: "100%", // Limita la altura al 100% del contenedor
                       objectFit: "cover", // La imagen cubre completamente el contenedor
@@ -136,7 +135,6 @@ function ShowEntities<T>({
                       className="center-content mt-5"
                       style={{
                         marginTop: isSmallScreen ? 5 : 10,
-                        width: isSmallScreen ? 80 : 100,
                       }}
                     >
                       {entity.footerImage}
@@ -144,63 +142,6 @@ function ShowEntities<T>({
                   )}
                 </div>
               </div>
-
-              {/* <List.Item
-                actions={actions ? actions(item) : undefined}
-                extra={
-                  <>
-                    <Image
-                      preview={false}
-                      className="show-mini-image"
-                      alt={entity.image.name}
-                      src={entity.image.url}
-                      style={{
-                        width: isSmallScreen ? 80 : 100,
-                        height: isSmallScreen ? 80 : 100, // Asegura que la imagen tenga la misma altura que el ancho
-                        maxWidth: "100%", // Limita la imagen al 100% del contenedor
-                        maxHeight: "100%", // Limita la altura al 100% del contenedor
-                        objectFit: "cover", // La imagen cubre completamente el contenedor
-                        borderRadius: isSmallScreen ? 5 : 10,
-                      }}
-                    />
-
-                    {entity.footerImage && (
-                      <div
-                        className="center-content mt-5"
-                        style={{
-                          marginTop: isSmallScreen ? 5 : 10,
-                          width: isSmallScreen ? 80 : 100,
-                        }}
-                      >
-                        {entity.footerImage}
-                      </div>
-                    )}
-                  </>
-                }
-              >
-                <List.Item.Meta
-                  avatar={
-                    entity.avatar ? (
-                      entity.avatar
-                    ) : (
-                      <Avatar
-                        size={isSmallScreen ? 30 : 40}
-                        src={logo}
-                        style={{ borderRadius: isSmallScreen ? 5 : 10 }}
-                      />
-                    )
-                  }
-                  title={entity.title}
-                  description={entity.description}
-                  style={{
-                    overflowWrap: "break-word",
-                    whiteSpace: isSmallScreen ? "normal" : "nowrap",
-                  }}
-                />
-                <div style={{ width: "80%" }}>
-                  {content ? content(item) : undefined}
-                </div>
-              </List.Item> */}
             </Card>
           );
         }}

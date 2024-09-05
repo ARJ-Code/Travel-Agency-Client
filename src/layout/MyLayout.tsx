@@ -50,7 +50,7 @@ const MyLayout: React.FC = () => {
         </Sider>
       )}
 
-      <Layout className="content-layout">
+      <Layout className="layout-content">
         <Header className="layout-header">
           <MyHeader setShowSidebar={setShowSidebar} showSidebar={showSidebar} />
         </Header>

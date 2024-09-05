@@ -21,7 +21,9 @@ const OfferFooterImage: FC<OfferFooterImageProps> = ({
   return (
     <div>
       <div className="center-content">
-        <Typography.Title level={3}>{`$ ${price.toFixed(2)}`}</Typography.Title>
+        <Typography.Title level={isSmallScreen ? 4 : 3}>{`$ ${price.toFixed(
+          2
+        )}`}</Typography.Title>
       </div>
 
       <div
