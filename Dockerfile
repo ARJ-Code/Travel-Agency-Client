@@ -1,26 +1,26 @@
-# Paso 1: Utilizar una imagen base de Node.js
-FROM node:latest AS build
+# --- Etapa de build ---
+FROM node:20 AS build
 
-# Paso 2: Establecer el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Paso 3: Copiar el archivo package.json y el archivo yarn.lock
 COPY package.json yarn.lock ./
-
-# Paso 4: Instalar las dependencias de la aplicación
 RUN yarn install --frozen-lockfile
 
-# Paso 5: Copiar todo el código fuente de la aplicación al contenedor
 COPY . .
-
-# Paso 6: Construir la aplicación de producción
 RUN yarn build
 
-# Paso 7: Instalar las dependencias para el servidor
-RUN yarn add express serve-static
+# --- Etapa final (solo servidor + build) ---
+FROM node:20-alpine
 
-# Paso 8: Exponer el puerto en el que se ejecutará la aplicación
+WORKDIR /app
+
+# Copiar solo lo necesario
+COPY --from=build /app/build ./build
+COPY server.js ./
+COPY package.json yarn.lock ./
+
+# Instalar solo dependencias necesarias para el server
+RUN yarn install --production --frozen-lockfile
+
 EXPOSE 3000
-
-# Paso 9: Comando para iniciar la aplicación con Node.js
 CMD ["node", "server.js"]
